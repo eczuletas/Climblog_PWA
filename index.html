@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#101a18" />
+    <meta name="description" content="A simple personal climbing height log." />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="icon" href="icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>ClimbLog</title>
+  </head>
+  
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div class="brand-mark" aria-hidden="true">↗</div>
+        <div>
+          <p class="eyebrow">PERSONAL TRAINING LOG</p>
+          <h1>ClimbLog</h1>
+        </div>
+        <button class="icon-button" id="export-button" type="button" aria-label="Export climbing data" title="Export data">↓</button>
+      </header>
+
+      <section class="hero-card" aria-labelledby="total-heading">
+        <div>
+          <p class="eyebrow">ALL-TIME DISTANCE</p>
+          <h2 id="total-heading"><span id="total-feet">0</span><small> ft</small></h2>
+          <p class="muted" id="session-summary">No sessions logged yet</p>
+        </div>
+        <div class="summit-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+      </section>
+
+      <section class="entry-card" aria-labelledby="add-heading">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">NEW SESSION</p>
+            <h2 id="add-heading">Log a climb</h2>
+          </div>
+          <span class="today" id="today-label"></span>
+        </div>
+        <form id="climb-form">
+          <label for="height">Height climbed</label>
+          <div class="input-row">
+            <input id="height" name="height" type="number" inputmode="decimal" min="0.1" step="0.1" placeholder="0" required />
+            <span class="unit">feet</span>
+          </div>
+          <div class="optional-grid">
+            <div>
+              <label for="wall">Wall <span>(optional)</span></label>
+              <input id="wall" name="wall" type="text" maxlength="60" placeholder="e.g. Volunteer Wall" />
+            </div>
+            <div>
+              <label for="notes">Note <span>(optional)</span></label>
+              <input id="notes" name="notes" type="text" maxlength="100" placeholder="How did it feel?" />
+            </div>
+          </div>
+          <button class="primary-button" type="submit">Save session <span>↗</span></button>
+        </form>
+      </section>
+
+      <section class="progress-section" aria-labelledby="progress-heading">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">RECENT PROGRESS</p>
+            <h2 id="progress-heading">Last 7 sessions</h2>
+          </div>
+          <span class="muted" id="average-label"></span>
+        </div>
+        <div class="chart" id="chart" aria-label="Bar chart of recent climbing sessions"></div>
+      </section>
+
+      <section class="history-section" aria-labelledby="history-heading">
+        <div class="section-heading">
+          <h2 id="history-heading">History</h2>
+          <button class="text-button" id="clear-button" type="button" hidden>Clear all</button>
+        </div>
+        <div id="history-list" class="history-list"></div>
+      </section>
+
+      <p class="privacy-note">Your entries are stored locally on this device.</p>
+    </main>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
